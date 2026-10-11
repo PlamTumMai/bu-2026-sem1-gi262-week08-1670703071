@@ -90,17 +90,27 @@ namespace Assignment
 
         private int Power(int baseNum, int exponent)
         {
-            return -1;
+            // Base Case
+            if (exponent == 0) return 1;
+
+            // Recursive Case
+            return baseNum * Power(baseNum, exponent - 1);
         }
 
-        public bool ASN02_IsPalindrome(string str)
+        public bool ASN02_IsPalindrome(string input)
         {
-            return IsPalindrome(str, 0, str.Length - 1);
+            return IsPalindrome(input, 0, input.Length - 1);
         }
 
-        private bool IsPalindrome(string str, int start, int end)
+        private bool IsPalindrome(string input, int left, int right)
         {
-            return false;
+            // Base Case
+            if (left >= right) return true;
+
+            // Recursive Case
+            if (input[left] != input[right]) return false;
+
+            return IsPalindrome(input, left + 1, right - 1);
         }
 
         public int ASN03_RecursiveGCD(int a, int b)
@@ -110,17 +120,35 @@ namespace Assignment
 
         private int GCD(int a, int b)
         {
-            return -1;
+            // Base Case
+            if (b == 0) return a;
+
+            // Recursive Case
+            return GCD(b, a % b);
         }
 
-        public int ASN04_RecursiveBinarySearch(int[] arr, int target)
+        public int ASN04_RecursiveBinarySearch(int[] numbers, int target)
         {
-            return BinarySearch(arr, target, 0, arr.Length - 1);
+            return BinarySearch(numbers, target, 0, numbers.Length - 1);
         }
 
-        private int BinarySearch(int[] arr, int target, int low, int high)
+        private int BinarySearch(int[] numbers, int target, int left, int right)
         {
-            return -1;
+            // Base Case: ไม่พบค่า
+            if (left > right) return -1;
+
+            int mid = left + (right - left) / 2;
+
+            // Base Case: พบค่าแล้ว
+            if (numbers[mid] == target) return mid;
+
+            // Recursive Case
+            if (target < numbers[mid])
+            {
+                return BinarySearch(numbers, target, left, mid - 1);
+            }
+
+            return BinarySearch(numbers, target, mid + 1, right);
         }
 
         #endregion
